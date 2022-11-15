@@ -30,7 +30,10 @@ app.get('/devices/', function(req, res, next) {
             'type': 2, 
         },
     ]
-    res.send(JSON.stringify(devices)).status(200);
+    setTimeout(()=>{
+        res.send(JSON.stringify(devices)).status(200);
+    },2000);
+
 });
 
 app.listen(PORT, function(req, res) {
