@@ -34,20 +34,36 @@
                 <br/>
               
                 <div class="row">
-                    <div id="cajaDisp">
+                    
+                    <div class="col s12 m6 l4 xl4" style="background-color: red;">
+                        a
                         
-                           
-                            
-                          
-                          
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modalAlta">Abrir</a>
 
+                    </div>
+                    <div class="col s12 m6 l4 xl4" style="background-color: rgb(111, 255, 0);">
+                        b                    
+                    </div>
+                    <div class="col s12 m12 l4 xl4" style="background-color: rgb(0, 94, 255);">
+                        c                    
+                    </div>
+                </div>
+                
+
+
+
+                <div class="row">
+                    <div id="cajaDisp">
                     </div>
                     <div class="input-field col s12 m12 l12 xl12">
                         <input id="iNombre" value="texto por defecto"/>
                         <textarea id="textarea_1" class="materialize-textarea" style="height: 150px;" >xxxx</textarea>
                     </div>
-                    <div class="col s4 m4 l2 xl2">
+                    <div class="col s12 m4 l2 xl2">
                         <button class="btn waves-effect waves-light button-view" id="btnSaludar" name="hello_button">PRESS ME</button>
+                      
+                    </div>
+                    <div class="col s12 xl2">
                         <button class="btn waves-effect waves-light button-view" id="btnOtro" name="hello_button">Otro</button>
                     </div>
                 </div>
@@ -74,5 +90,32 @@
         </footer>
 		<!--JavaScript at end of body for optimized loading-->
 	
+
+        <div id="modalAlta" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select multiple id="selectColores">
+                          <option value="" disabled selected>Seleccione</option>
+                          <option value="rojo">Rojo</option>
+                          <option value="verde">Verde</option>
+                          <option value="azul">Azul</option>
+                        </select>
+                        <label>Color de luz</label>
+                      </div>
+                      <div class="input-field col s6">
+                        <input id="txtNombre" type="text" class="validate">
+                        <label for="txtNombre">Nombre</label>
+                      </div>
+
+                   
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="btnAdd" class="btn-floating btn-large waves-effect waves-light red">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
+          </div>
     </body>
   </html>

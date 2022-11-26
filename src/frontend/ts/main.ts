@@ -1,5 +1,6 @@
+declare const M;
 
-class Main implements EventListenerObject,HandleResponse{
+class Main implements EventListenerObject, HandleResponse{
  
     private framework: Framework = new Framework();
     private personas: Array<Persona> =new Array();
@@ -49,9 +50,9 @@ class Main implements EventListenerObject,HandleResponse{
                   <label>
                     Off`;
             if (disp.state) {
-                grilla += `<input id="cb_${disp.id}" type="checkbox" checked>`;    
+                grilla += `<input id="cb_${disp.id}" miAtt="mi dato 1" type="checkbox" checked>`;    
             } else {
-                grilla += `<input id="cb_${disp.id}" type="checkbox">`;    
+                grilla += `<input id="cb_${disp.id}" miAtt="mi dato 2" type="checkbox">`;    
             }
             
             
@@ -77,13 +78,15 @@ class Main implements EventListenerObject,HandleResponse{
 
     handleEvent(object: Event): void {
      
-        let tipoEvento:string=object.type;
+        let tipoEvento: string = object.type;
+       
         let objEvento: HTMLElement;
         objEvento = <HTMLElement>object.target;
-        if(objEvento.id=="btnOtro"){
-            console.log(objEvento.id, objEvento.textContent); 
+        
+        if (objEvento.id == "btnOtro") {
+            console.log(objEvento.id, objEvento.textContent);
             
-            let iNombre =<HTMLInputElement> document.getElementById("iNombre");
+            let iNombre = <HTMLInputElement>document.getElementById("iNombre");
             
             objEvento.textContent = iNombre.value;
             alert("hola " + this.personas[0].getNombre() + " estoy en el main");
@@ -96,9 +99,27 @@ class Main implements EventListenerObject,HandleResponse{
         } else if (objEvento.id.startsWith("cb_")) {
             let idDisp = objEvento.id.substring(3);
             
+            
             alert("Se cambio el estado del dispositivo " + idDisp + " -" + (<HTMLInputElement>objEvento).checked);
 
        
+            
+        } else {
+            objEvento = <HTMLElement>objEvento.parentElement;
+        
+            if (objEvento.id == "btnAdd") {
+                M.toast({html: 'Se agrego', classes: 'rounded'});
+                let elementoTxtNombre = <HTMLInputElement>document.getElementById("txtNombre");
+                
+                console.log(elementoTxtNombre.value);
+                let elementoSelectColor = <HTMLSelectElement>document.getElementById("selectColores");
+                var instance = M.FormSelect.getInstance(elementoSelectColor);
+                console.log(instance.getSelectedValues())
+
+
+
+
+            }
             
         }
 
@@ -106,6 +127,15 @@ class Main implements EventListenerObject,HandleResponse{
 }
 
 window.addEventListener("load", () => {
+
+   var elems = document.querySelectorAll('select');
+   var instances = M.FormSelect.init(elems, "");
+
+    M.updateTextFields();
+    
+    var elemsM = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elemsM, "");
+
     let user: Usuario = new Usuario("Juan","jperez","jperez@gmail.com");
     let per1 = new Persona("Matias")
     per1.edad = 12;
@@ -116,6 +146,10 @@ window.addEventListener("load", () => {
     btn.addEventListener("click", main);
     let btn2 = document.getElementById("btnOtro");
     btn2.addEventListener("click", main);
+    let btnAdd = document.getElementById("btnAdd");
+    btnAdd.addEventListener("click", main);
+    console.log(btnAdd);
+    
 });
 
 
