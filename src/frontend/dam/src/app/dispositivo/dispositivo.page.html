@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Dispositivo</ion-title>
+    <!-- <ion-title>dispositivo {{ observable$ | async }}</ion-title> -->
+  </ion-toolbar>
+  <button (click)="unsubscribe()">Unsub</button>
+  <br>
+  <button (click)="subscribe()">Sub</button>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">dispositivo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
