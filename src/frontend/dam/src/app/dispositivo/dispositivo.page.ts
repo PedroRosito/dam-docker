@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DispositivoService } from '../services/dispositivo.service';
 import { Observable, Subscription, interval } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dispositivo',
@@ -12,7 +13,7 @@ export class DispositivoPage implements OnInit, OnDestroy {
   observable$: Observable<any>
   subscription: Subscription
 
-  constructor(private dispositivoService: DispositivoService) {
+  constructor(private dispositivoService: DispositivoService, private actRout: ActivatedRoute) {
     this.observable$ = interval(1000)
 
     this.subscription = this.observable$.subscribe((integer) => {
@@ -33,6 +34,11 @@ export class DispositivoPage implements OnInit, OnDestroy {
     //     console.log(error)
     //   })
   }
+
+  ionViewWillEnter () {
+    console.log(Number(this.actRout.snapshot.paramMap.get('id')))
+  }
+
 
   subscribe() {
     this.subscription = this.observable$.subscribe((integer) => {
