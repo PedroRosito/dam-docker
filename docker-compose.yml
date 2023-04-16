@@ -43,7 +43,9 @@ services:
             -                    "8001:80"
 
     node-backend:
-        image:                   abassi/nodejs-server:10.0-dev
+        build:
+          context:               ./src/backend
+          dockerfile:            Dockerfile  
         container_name:          node-backend
         volumes:
             -                    ./src/backend:/home/node/app/src
